@@ -30,4 +30,4 @@ noteSchema.index({
   content: 'text',
 });
 
-export const Note = model('note', noteSchema);
+export const Note = model('Note', noteSchema);
