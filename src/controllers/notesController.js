@@ -1,4 +1,3 @@
-import { Promise } from 'mongoose';
 import { Note } from '../models/note.js';
 import createHttpError from 'http-errors';
 
@@ -16,10 +15,7 @@ export const getAllNotes = async (req, res) => {
   }
 
   if (search) {
-    filter.title = {
-      $regex: search,
-      $options: 'i',
-    };
+    filter.$text = { $search: search };
   }
 
   const [totalNotes, notes] = await Promise.all([
