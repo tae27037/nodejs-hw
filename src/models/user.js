@@ -4,17 +4,18 @@ const userSchema = new Schema(
   {
     username: { type: String, trim: true },
     email: { type: String, unique: true, required: true, trim: true },
-    password: { type: String, required: true },
+    password: { type: String, required: true, minlength: 8 }, // ✅ добавлено
   },
   {
     timestamps: true,
   },
 );
 
-userSchema.pre('save', function () {
+userSchema.pre('save', function (next) {
   if (!this.username) {
     this.username = this.email;
   }
+  next();
 });
 
 userSchema.methods.toJSON = function () {
