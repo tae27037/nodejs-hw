@@ -3,8 +3,9 @@ import { model, Schema } from 'mongoose';
 const userSchema = new Schema(
   {
     username: { type: String, trim: true },
-    email: { type: String, unique: true, require: true, trim: true },
-    password: { type: String, require: true },
+    email: { type: String, unique: true, required: true, trim: true },
+    password: { type: String, required: true },
+    userId: {type: Schema.Types.ObjectId, ref: "User", required: true},
   },
   {
     timestamps: true,
